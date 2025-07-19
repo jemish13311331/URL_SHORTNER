@@ -2,7 +2,7 @@ import express, {request,response} from 'express';
 import { nanoid } from 'nanoid';
 import {Pool} from 'pg'
 
-const PORT = 3000;
+const PORT = 4000;
 
 interface myInterface{
     [key:string]:string
