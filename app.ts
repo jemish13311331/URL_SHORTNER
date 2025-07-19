@@ -41,8 +41,7 @@ app.get('/au/:id',async(request, response)=>{
     
     if(res.rowCount==1){
         response.json(res.rows)
-    }  
-    
+    } 
 })
 
 app.listen(PORT,()=>console.log("project is running on the port number",3000))
