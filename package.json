@@ -2,7 +2,9 @@
   "name": "url_shortner_assessment",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
+    "build":"tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' app.ts"
   },
@@ -11,7 +13,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "^24.0.14",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.15",
     "@types/pg": "^8.15.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

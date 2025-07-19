@@ -32,7 +32,7 @@ app.post('/url-shortner',async(request:Request, response:Response)=>{
     }
 })
 
-app.get('/au/:id',async(request, response)=>{
+app.get('/au/:id',async(request:Request, response:Response)=>{
     let a=request.params.id
     // database[a.url]=`https://${domain}/${nanoid(7)}`
     console.log(a)
@@ -44,4 +44,4 @@ app.get('/au/:id',async(request, response)=>{
     } 
 })
 
-app.listen(PORT,()=>console.log("project is running on the port number",3000))
+app.listen(PORT,()=>console.log("project is running on the port number",PORT))
