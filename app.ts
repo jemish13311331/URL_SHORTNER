@@ -9,11 +9,11 @@ interface myInterface{
 }
 
 const pool:any = new Pool({
-    user: 'jemishitaliya',
-    host: 'localhost',
-    database: 'jemishitaliya',
-    password: '12345678',
-    port: 8080, // default
+    user: 'jemish',
+    host: 'dpg-d1tt25je5dus73dvl5n0-a',
+    database: 'mydb_qlq2',
+    password: 'L91yAWUt8AU8pojHhGUQekuzPGZt4W39',
+    port: 5432, // default
   });
 
 const app=express();
