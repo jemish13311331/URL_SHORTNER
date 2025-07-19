@@ -30,6 +30,9 @@ app.post('/url-shortner',async(request:Request, response:Response)=>{
     if (res.rowCount==1){
         response.json(res.rows)
     }
+    else{
+        response.json(res)
+    }
 })
 
 app.get('/au/:id',async(request:Request, response:Response)=>{
@@ -40,8 +43,8 @@ app.get('/au/:id',async(request:Request, response:Response)=>{
     const res=await pool.query('select base_url from UrlShortner where shorten_id= $1;',[a])
     
     if(res.rowCount==1){
-        res.redirect(res.rows[0].base_url);
+        response.json(res);
     } 
 })
 
-app.listen(process.env.PORT || PORT,()=>console.log("project is running on the port number",PORT))
+app.listen( PORT,()=>console.log("project is running on the port number",PORT))
