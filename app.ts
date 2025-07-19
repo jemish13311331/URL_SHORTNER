@@ -40,7 +40,7 @@ app.get('/au/:id',async(request:Request, response:Response)=>{
     const res=await pool.query('select base_url from UrlShortner where shorten_id= $1;',[a])
     
     if(res.rowCount==1){
-        res.redirect(res[0].base_url);
+        res.redirect(res.rows[0].base_url);
     } 
 })
 
