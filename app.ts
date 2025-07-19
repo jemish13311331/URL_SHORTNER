@@ -1,4 +1,4 @@
-import express, {request,response} from 'express';
+import express, {Request,Response} from 'express';
 import { nanoid } from 'nanoid';
 import {Pool} from 'pg'
 
@@ -22,7 +22,7 @@ const database:myInterface={}
 
 app.use(express.json())
 
-app.post('/url-shortner',async(request, response)=>{
+app.post('/url-shortner',async(request:Request, response:Response)=>{
     let a=request.body
     // database[a.url]=`https://${domain}/${nanoid(7)}`
     console.log(a)
