@@ -47,4 +47,4 @@ app.get('/au/:id',async(request:Request, response:Response)=>{
     } 
 })
 
-app.listen( PORT,()=>console.log("project is running on the port number",PORT))
+app.listen( process.env.PORT,()=>console.log("project is running on the port number",PORT))
