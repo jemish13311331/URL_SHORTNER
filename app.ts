@@ -1,6 +1,9 @@
 import express, {Request,Response} from 'express';
 import { nanoid } from 'nanoid';
-import {Pool} from 'pg'
+import {Pool} from 'pg';
+import cors from 'cors';
+
+
 
 const PORT = 4000;
 
@@ -17,8 +20,7 @@ const pool:any = new Pool({
   });
 
 const app=express();
-const domain="xyz.com"
-const database:myInterface={}
+app.use(cors)
 
 app.use(express.json())
 
