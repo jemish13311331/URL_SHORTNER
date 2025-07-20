@@ -20,7 +20,7 @@ const pool:any = new Pool({
   });
 
 const app=express();
-app.use(cors)
+app.use(cors())
 
 app.use(express.json())
 
