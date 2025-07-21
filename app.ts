@@ -1,52 +1,44 @@
-import express, {Request,Response} from 'express';
-import { nanoid } from 'nanoid';
-import {Pool} from 'pg';
-import cors from 'cors';
+import express, { Request, Response } from "express";
+import cors from "cors";
+import { rateLimitForApp } from "./apihandler/middleware";
+import dotenv from "dotenv";
+import {
+  editSlug,
+  listURLs,
+  redirectURL,
+  shortenURL,
+} from "./apihandler/handler";
+dotenv.config();
 
+const PORT = process.env.PORT;
 
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const PORT = 4000;
+//to create shorten url
+app.post("/url-shortner", async (request: Request, response: Response) =>
+  shortenURL(request, response)
+);
 
-interface myInterface{
-    [key:string]:string
-}
+//to fetch existing url
+app.get(
+  "/au/:id",
+  rateLimitForApp,
+  async (request: Request, response: Response) => redirectURL(request, response)
+);
 
-const pool:any = new Pool({
-    user: 'jemish',
-    host: 'dpg-d1tt25je5dus73dvl5n0-a',
-    database: 'mydb_qlq2',
-    password: 'L91yAWUt8AU8pojHhGUQekuzPGZt4W39',
-    port: 5432, // default
-  });
+//to fetch listof all shorten and base urls
+app.get("/shorten-list", async (request: Request, response: Response) =>
+  listURLs(request, response)
+);
 
-const app=express();
-app.use(cors())
+//to edit the slug of an existing shorten url
+app.put("/edit-slug", async (request: Request, response: Response) =>
+  editSlug(request, response)
+);
 
-app.use(express.json())
-
-app.post('/url-shortner',async(request:Request, response:Response)=>{
-    let a=request.body
-    // database[a.url]=`https://${domain}/${nanoid(7)}`
-    console.log(a)
-    const res=await pool.query(`insert into UrlShortner (base_url, shorten_id) Values ($1,$2) RETURNING *;`,[a.url,nanoid(7)])
-    if (res.rowCount==1){
-        response.json(res.rows)
-    }
-    else{
-        response.json(res)
-    }
-})
-
-app.get('/au/:id',async(request:Request, response:Response)=>{
-    let a=request.params.id
-    // database[a.url]=`https://${domain}/${nanoid(7)}`
-    console.log(a)
-   
-    const res=await pool.query('select base_url from UrlShortner where shorten_id= $1;',[a])
-    
-    if(res.rowCount==1){
-        response.redirect(res.rows[0].base_url);
-    } 
-})
-
-app.listen( process.env.PORT,()=>console.log("project is running on the port number",PORT))
+//to run the app on specific port
+app.listen(PORT, () =>
+  console.log("project is running on the port number", PORT)
+);
