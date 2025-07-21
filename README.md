@@ -6,10 +6,15 @@ npm install
 //for e.g. (it's just an example you need to create your own credentials in PostgreSQL)
 
 PORT=4000
+
 USER=jemishitaliya
+
 DB_HOST=localhost
+
 DATABSE=jemishitaliya
+
 PASSWORD=12345678
+
 DB_PORT=8080
 
 //to run the project
