@@ -69,6 +69,5 @@ export async function editSlug(request: Request, response: Response) {
     "Update UrlShortner SET shorten_id=$1, visit_count=0 where shorten_id=$2;",
     [request.body.newSlug, request.body.slug]
   );
-  console.log(editSlugID);
   response.json(editSlugID);
 }
